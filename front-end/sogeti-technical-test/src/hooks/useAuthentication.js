@@ -39,10 +39,18 @@ export default function useAuthentication(){
           fetch('http://localhost:3001/auth', options)
           .then(response => {setJwt(response.headers.get('Authorization'))})
     }
+    const logout = () => {
+        setAuthState({
+            authenticated : false,
+            jwt : null
+        })
+    }
     return {
         methods : {
             signUp,
-            signIn
+            signIn,
+            logout,
+            setJwt
         }
         ,
         authState

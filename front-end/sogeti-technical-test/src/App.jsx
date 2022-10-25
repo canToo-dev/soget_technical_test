@@ -8,15 +8,13 @@ import useAuthentication from './hooks/useAuthentication';
 import Auth from './pages/auth';
 function App() {
   const authCtx = useAuthentication();
-  const [r, e] = useFetch("http://localjhost:3001/todos");
-  useEffect(()=>{
-    //console.log(e);
-  }, [e])
   return (
     <AuthenticationContext.Provider value={authCtx}>
       {
         authCtx.authState.authenticated &&
-        <></>
+        <>
+        
+        </>
         ||
         <Auth></Auth>
 

@@ -2,7 +2,7 @@ import { useId } from "react";
 import { useState, useContext } from "react"
 import Field from "../../components/field";
 import AuthenticationContext from "../../functions/authenticationContextProvider";
-
+import useFetch from "../../hooks/useFetch";
 export default function Auth(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -13,6 +13,8 @@ export default function Auth(){
     const handleChecked = (e)=>{
         setNewAccount(e.target.checked)
     }
+  const [r, e] = useFetch("http://localjhost:3001/todos");
+
     const submit = () => {
         newAccount ?
         authCtx.methods.signUp(
