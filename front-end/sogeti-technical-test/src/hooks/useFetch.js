@@ -5,13 +5,16 @@ export default function useFetch (url, obj){
     const authCtx = useContext(AuthenticationContext);
     const [response, setResponse] = useState(undefined);
     const [errors, setErrors] = useState(undefined);
+    const errorsCallback = obj?.errorsCallback || setErrors //if a callback is given for errors, 
+                                                            //useFetch will use it.
     /*
         devise_token_auth gem automaticaly refreshes
         the JWT for each authentication-based request.
     */
     const options = authCtx.authState.autheticated ? {
         headers: {
-            Authorization: `Bearer ${authCtx.authState.jwt}`,
+            Authorization: authCtx?.authState?.jwt && `Bearer ${authCtx.authState.jwt}`, //passes
+                                                                                        //jwt if exists
             'Content-Type': 'application/json'
         },
         ...obj
@@ -39,7 +42,6 @@ export default function useFetch (url, obj){
         })
 
     };
-    const errorsCallback = obj?.errorsCallback || setErrors
     return [response, errors, useEffect(()=>{
         perform();
     }, [])]
