@@ -10,4 +10,5 @@
     - string  : title ✔️
     - text : descrption ✔️
 
+- authenticate user for every action on todo
     
