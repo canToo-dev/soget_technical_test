@@ -32,6 +32,14 @@ class TodosController < ApplicationController
 
   # PATCH/PUT /todos/1
   def update
+    p "======================================"
+    p "======================================"
+    p "======================================"
+    p todo_params
+    p "555555555555555"
+    p "555555555555555"
+    p "555555555555555"
+    p "555555555555555"
     if @todo.update(todo_params)
       render json: @todo
     else
@@ -47,8 +55,8 @@ class TodosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_todo
-      @todo = Todo.where(user: current_user).find(params[:id])
-      if(@todo == nil)
+      @todo = Todo.find(params[:id])
+      unless(@todo.user == current_user)
         render json: {
           message: "you don't own or this does'nt exists todo."
         }, status: 403
