@@ -1,4 +1,14 @@
-/* resets*/
-
 /* IMPORTS */
 @import "./scss/variables.scss";
+@import "./components/todo/style.scss";
+@import "./pages/todos/style.scss";
+/* resets*/
+body{
+    margin: 0;
+    background: $dark;
+    color: $clear;
+}
+#root{
+    width: 80%;
+    margin: 2em auto;
+}

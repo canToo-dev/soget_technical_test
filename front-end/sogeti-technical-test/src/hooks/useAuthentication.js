@@ -23,7 +23,6 @@ export default function useAuthentication(){
             },
             body: JSON.stringify(obj)
           };
-          console.log(JSON.stringify(obj));
           fetch('http://localhost:3001/auth', options)
           .then(response => {setJwt(response.headers.get('Authorization'))})
     }
@@ -35,8 +34,7 @@ export default function useAuthentication(){
             },
             body: JSON.stringify(obj)
           };
-          console.log(JSON.stringify(obj));
-          fetch('http://localhost:3001/auth', options)
+          fetch('http://localhost:3001/auth/sign_in', options)
           .then(response => {setJwt(response.headers.get('Authorization'))})
     }
     const logout = () => {

@@ -13,7 +13,6 @@ export default function Auth(){
     const handleChecked = (e)=>{
         setNewAccount(e.target.checked)
     }
-  const [r, e] = useFetch("http://localjhost:3001/todos");
 
     const submit = () => {
         newAccount ?

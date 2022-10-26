@@ -11,27 +11,32 @@ export default function useFetch (url, obj){
         devise_token_auth gem automaticaly refreshes
         the JWT for each authentication-based request.
     */
-    const options = authCtx.authState.autheticated ? {
-        headers: {
-            Authorization: authCtx?.authState?.jwt && `Bearer ${authCtx.authState.jwt}`, //passes
-                                                                                        //jwt if exists
-            'Content-Type': 'application/json'
-        },
-        ...obj
+    const buildOptions = () => {
+        return authCtx.authState.jwt ? {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: authCtx?.authState?.jwt && `Bearer ${authCtx.authState.jwt}`
+            },
+            ...obj
+        }
+        :
+        obj; // if authenticated : add the jwt to the header, 
+            //otherwise : just pass the obj.
     }
-    :
-    obj; // if authenticated : add the jwt to the header, 
-        //otherwise : just pass the obj.
-    const handleJWTRefresh = (response) => {
-        const jwt = response.headers.get('Authorization');
+    const handleJWTRefresh = (jwt) => {
         jwt ? authCtx.methods.setJwt(jwt)
         :
         authCtx.methods.logout();
     }
-    const perform = () => {
-        fetch(url, obj)
+    const perform = (obj) => {
+        const options = {
+            ...buildOptions(),
+            ...obj
+        }
+        console.log(options);
+        fetch(url, options)
         .then(response => {
-            handleJWTRefresh(response);
+            handleJWTRefresh(response.headers.get('Authorization'));
             return response.json()
         })
         .then(json => {
@@ -42,7 +47,8 @@ export default function useFetch (url, obj){
         })
 
     };
-    return [response, errors, useEffect(()=>{
-        perform();
-    }, [])]
+    useEffect(()=>{
+        obj?.onStart && perform();
+    }, [])
+    return [response, errors, perform]
 }
