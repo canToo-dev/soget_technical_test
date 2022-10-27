@@ -6,7 +6,6 @@ export default function Home (){
     const authCtx = useContext(AuthenticationContext)
     return(
         <>
-        gyikonjbhikl
             {
                 authCtx.authState.authenticated &&
                 <Todos/>

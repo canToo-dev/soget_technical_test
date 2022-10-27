@@ -21,7 +21,7 @@
         input[type="checkbox"]{
             display: none;
         }
-        input[type="checkbox"]:checked + .check::before{
+        input.checked + .check::before{
             background: $green;
             transform: translateY(-50%) translateX(95.24%);
           }

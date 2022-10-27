@@ -31,7 +31,6 @@ export default function useFetch (url, obj){
             ...buildOptions(),
             ...obj
         }
-        console.log(options);
         fetch(url, options)
         .then(response => {
             handleJWTRefresh(response.headers.get('Authorization'));
