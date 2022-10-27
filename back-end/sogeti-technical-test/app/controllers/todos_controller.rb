@@ -5,7 +5,9 @@ class TodosController < ApplicationController
   # GET /todos
   def index
     @todos = current_user.todos
-    render json: @todos
+    unchecked = @todos.filter{|td| td.checked == false}
+    checked = @todos.filter{|td| td.checked == true || td.checked == nil}
+    render json: (unchecked.concat(checked))
   end
 
   # GET /todos/1
@@ -22,7 +24,7 @@ class TodosController < ApplicationController
   # POST /todos
   def create
     @todo = Todo.new(todo_params)
-
+    @todo.user = current_user
     if @todo.save
       render json: @todo, status: :created, location: @todo
     else
