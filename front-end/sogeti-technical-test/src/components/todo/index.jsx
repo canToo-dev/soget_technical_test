@@ -1,36 +1,53 @@
-import { useId, useState, useEffect } from "react";
+import { useMemo, useState, useEffect } from "react";
 import useFetch from "../../hooks/useFetch";
 import BASE_URI from "../../constants/baseUri";
+import { Link } from "react-router-dom";
+import createID from "../../functions/createID";
 
 export default function Todo(props){
-    const [checked, setChecked] = useState(props.todo.checked ? true : false);
+    const propCheck = props.todo.checked ? true : false;
     const [response, errors, perform] = useFetch(`${BASE_URI}/todos/${props.todo.id}`);
     const change = () => {
         perform({
             method : "PUT",
             body : JSON.stringify({
                     todo : {
-                        checked : !checked,
+                        checked : !propCheck,
                     }
             })
         })
-        setChecked(!checked)
     }
-    const checkboxId = useId()
+    //const checkboxId = useId() <== DON'T DO THAT :
+    /*
+        useID is a mess in this case.
+        useID returns incremental_based ID
+        so, when you check a todo, the container updates,
+        the next todo which has a id like : ":n:",
+        after update has now id like ":n-1:"
+        this creates display bug.
+        even if the state says that the todo is unchecked,
+        it will be displayed has checked :/
+        (I honestly took a while to understand what was going on)
+        do this instead :
+    */
+    var checkboxId = createID(7);
     useEffect(()=>{
         if(response){
-            setChecked(response.checked);
+            props.update(response);
         }
     }, [response])
     return(
         <div className="todos-container">
             <div className="todo">
                 <div className="title">
-                    <input type="checkbox" id={checkboxId} checked={checked} onChange={change}/>
+                    <input type="checkbox" className={propCheck ? "checked" : ""} id={checkboxId} checked={propCheck} onChange={change}/>
                     <label className="check" htmlFor={checkboxId}>
                         
                     </label>
-                    <h2>{props.todo.title}</h2>
+
+                    <Link to={`/${props.todo.id}`}>
+                        <h2>{props.todo.title}</h2>
+                    </Link>
                 </div>
             </div>
         </div>
