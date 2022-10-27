@@ -24,9 +24,7 @@ export default function useFetch (url, obj){
             //otherwise : just pass the obj.
     }
     const handleJWTRefresh = (jwt) => {
-        jwt ? authCtx.methods.setJwt(jwt)
-        :
-        authCtx.methods.logout();
+        jwt && authCtx.methods.setJwt(jwt)
     }
     const perform = (obj) => {
         const options = {
@@ -50,5 +48,7 @@ export default function useFetch (url, obj){
     useEffect(()=>{
         obj?.onStart && perform();
     }, [])
-    return [response, errors, perform]
+    return [response, errors, perform, {
+        setResponse
+    }]
 }

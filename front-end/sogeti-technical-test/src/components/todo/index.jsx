@@ -1,6 +1,7 @@
 import { useId, useState, useEffect } from "react";
 import useFetch from "../../hooks/useFetch";
 import BASE_URI from "../../constants/baseUri";
+import { Link } from "react-router-dom";
 
 export default function Todo(props){
     const [checked, setChecked] = useState(props.todo.checked ? true : false);
@@ -20,6 +21,7 @@ export default function Todo(props){
     useEffect(()=>{
         if(response){
             setChecked(response.checked);
+            props.update(response)
         }
     }, [response])
     return(
@@ -30,7 +32,10 @@ export default function Todo(props){
                     <label className="check" htmlFor={checkboxId}>
                         
                     </label>
-                    <h2>{props.todo.title}</h2>
+
+                    <Link to={`/${props.todo.id}`}>
+                        <h2>{props.todo.title}</h2>
+                    </Link>
                 </div>
             </div>
         </div>
