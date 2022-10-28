@@ -18,7 +18,7 @@ As a user I would like to list my current todos
 ### Description :
 As a user I would like to change a todo state by checking a "box" ✅
 ### Acceptance criterias :
-- When a todo is done, it should be placed at the bottom of the list ✅ and should be crossed out 
+- When a todo is done, it should be placed at the bottom of the list ✅ and should be crossed out  ✅
 
 ## 3 : Detail a TODO
 
