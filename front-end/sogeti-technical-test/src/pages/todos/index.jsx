@@ -1,18 +1,22 @@
 import useFetch from "../../hooks/useFetch"
 import BASE_URI from "../../constants/baseUri"
-import { useEffect, useReducer, useState} from "react"
+import { useContext, useEffect, useReducer, useState} from "react"
 import Todo from "../../components/todo/"
 import NewTodo from "../../components/newTodo"
 import { useParams } from 'react-router-dom';
 import TodoModal from "../../components/todoModal"
+import ErrorsContext from "../../functions/errorsContextProvider"
 export default function Todos (){
-    const [ignored, forceUpdate] = useState(0);
+    const errorsCtx = useContext(ErrorsContext)
     const { slug } = useParams();
     const [todosState, setTodosState] = useState([]);
     const [response, errors, perform] = useFetch(BASE_URI+"/todos", {
-        onStart: true
+        onStart: true,
+        errorsCallback : errorsCtx.setErrors
     });
     const setSortedTodoState = (arr) => {
+        if(!Array.isArray(arr))
+            return;
         const paramClone = [...arr];
         
         const checked = [...paramClone].filter(todo => todo.checked === true);

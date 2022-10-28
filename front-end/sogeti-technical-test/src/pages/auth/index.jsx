@@ -2,7 +2,6 @@ import { useId } from "react";
 import { useState, useContext } from "react"
 import Field from "../../components/field";
 import AuthenticationContext from "../../functions/authenticationContextProvider";
-import useFetch from "../../hooks/useFetch";
 export default function Auth(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");

@@ -3,18 +3,25 @@ import useFetch from "../../hooks/useFetch";
 import BASE_URI from "../../constants/baseUri";
 import { useEffect, useState } from "react";
 import Field from "../field";
+import { useContext } from "react";
+import ErrorsContext from "../../functions/errorsContextProvider";
 export default function TodoModal(props){
     /*
         I just wanted to create ONE component for both update and create
         But I realized that the logic is quite complex
         I'll explain few things :
     */
+    const errorsCtx = useContext(ErrorsContext);
     const newTodo = props.slug == "new"; /* check if this is a create or post context */
     const requestUrl = BASE_URI + "/todos/" + (newTodo ? "" : props.slug)
 
-    const [response, errors, perform] = useFetch(requestUrl); /* this useFetch is used to fetch data from server in 
-                                                                update context */
-    const [requestResponse, requestErrors, requestPerform] = useFetch(requestUrl) /* this one is for submission request */
+    const [response, errors, perform] = useFetch(requestUrl,{
+        errorsCallback : errorsCtx.setErrors
+    }); /* this useFetch is used to fetch data from server in 
+        update context */
+    const [requestResponse, requestErrors, requestPerform] = useFetch(requestUrl,{
+        errorsCallback : errorsCtx.setErrors
+    }) /* this one is for submission request */
 
     const [title, setTitle] = useState();
     const [description, setDescription] = useState();

@@ -3,10 +3,15 @@ import useFetch from "../../hooks/useFetch";
 import BASE_URI from "../../constants/baseUri";
 import { Link } from "react-router-dom";
 import createID from "../../functions/createID";
+import ErrorsContext from "../../functions/errorsContextProvider";
+import { useContext } from "react";
 
 export default function Todo(props){
+    const errorsCtx = useContext(ErrorsContext)
     const propCheck = props.todo.checked ? true : false;
-    const [response, errors, perform] = useFetch(`${BASE_URI}/todos/${props.todo.id}`);
+    const [response, errors, perform] = useFetch(`${BASE_URI}/todos/${props.todo.id}`,{
+        errorsCallback : errorsCtx.setErrors
+    });
     const change = () => {
         perform({
             method : "PUT",
