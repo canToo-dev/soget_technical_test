@@ -49,5 +49,9 @@ You're working in the WebFactory which provides the following technical recommen
 - The product owner is curious and likes to read the application code on Github and test it via Github Pages
 - The application should have a mocked backend and store all todos on it (extension of HttpXhrBackend)
 
+# Explainations about front-end testing
+I got troubles with Jest installation and configuration therefore, I could'nt test the dom
 # Bonus
 You can add any new functionality in this wonderful project if you want to, in order to satisfy your PO 😉  # soget_technical_test
+
+
