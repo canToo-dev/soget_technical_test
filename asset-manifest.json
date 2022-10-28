@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/soget_technical_test/static/css/main.df4cc506.css",
+    "main.js": "/soget_technical_test/static/js/main.d883012d.js",
+    "static/js/787.f790fd29.chunk.js": "/soget_technical_test/static/js/787.f790fd29.chunk.js",
+    "index.html": "/soget_technical_test/index.html",
+    "main.df4cc506.css.map": "/soget_technical_test/static/css/main.df4cc506.css.map",
+    "main.d883012d.js.map": "/soget_technical_test/static/js/main.d883012d.js.map",
+    "787.f790fd29.chunk.js.map": "/soget_technical_test/static/js/787.f790fd29.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.df4cc506.css",
+    "static/js/main.d883012d.js"
+  ]
+}
