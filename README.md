@@ -23,7 +23,7 @@ As a user I would like to change a todo state by checking a "box" ✅
 ## 3 : Detail a TODO
 
 ### Description :
-As a user I would like to display one of my todo in a separate or dedicated view.
+As a user I would like to display one of my todo in a separate or dedicated view.✅
 This todo will contain its title and a description (which is a new information not shown in the previous view). ✅
 ### Acceptance criterias :
 - We can click on a todo (by any way) to access the details view of the todo ✅
@@ -34,7 +34,7 @@ This todo will contain its title and a description (which is a new information n
 ### Description :
 As a user I would like to add a new todo in my list ✅
 ### Acceptance criterias :
-- The todo title is required
+- The todo title is required ✅
 - The todo description can be empty ✅
 - The newly created todo has to be on top of the list of todos ✅
 - You are free to choose the design / interaction ✅
