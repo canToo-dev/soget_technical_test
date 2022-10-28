@@ -18,6 +18,36 @@
         width: 100%;
         display: flex;
         align-items: center;
+            h2{
+                position: relative;
+                color: $clear;
+                text-decoration: underline $clear;
+                overflow: hidden;
+                &::after{
+                    content: "";
+                    position: absolute;
+                    bottom: 50%;
+                    width: 100%;
+                    border-bottom: solid 3px $clear;
+                    left:0;
+                    transform: translateY(50%) translateX(100%);
+                    pointer-events: none;
+                    transition-duration: .25s;
+                }
+                &.checked{
+                    &::after{
+                        content: "";
+                        position: absolute;
+                        bottom: 50%;
+                        width: 100%;
+                        border-bottom: solid 3px $clear;
+                        left:0;
+                        transform: translateY(50%);
+                        pointer-events: none;
+                    }
+                }
+                
+            }
         input[type="checkbox"]{
             display: none;
         }

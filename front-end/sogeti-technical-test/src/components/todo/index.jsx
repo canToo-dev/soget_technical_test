@@ -46,7 +46,7 @@ export default function Todo(props){
                     </label>
 
                     <Link to={`/${props.todo.id}`}>
-                        <h2>{props.todo.title}</h2>
+                        <h2 className={propCheck ? "checked" : ""}>{props.todo.title}</h2>
                     </Link>
                 </div>
             </div>
