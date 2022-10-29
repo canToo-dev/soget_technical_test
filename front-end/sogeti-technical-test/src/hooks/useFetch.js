@@ -8,7 +8,7 @@ export default function useFetch (url, obj){
     const [errors, setErrors] = useState(undefined);
     const errorsCallback = obj?.errorsCallback || setErrors //if a callback is given for errors, 
                                //useFetch will use it.
-    const navigateTo = useNavigate();
+    //const navigateTo = useNavigate();
     /*
         devise_token_auth gem automaticaly refreshes
         the JWT for each authentication-based request.
@@ -30,7 +30,7 @@ export default function useFetch (url, obj){
     }
 
     const goRoot = ()=>{
-        navigateTo("/")
+        //navigateTo("/")
     }
     const perform = (obj) => {
         const options = {

@@ -1,7 +1,6 @@
 import { useMemo, useState, useEffect } from "react";
 import useFetch from "../../hooks/useFetch";
 import BASE_URI from "../../constants/baseUri";
-import { Link } from "react-router-dom";
 import createID from "../../functions/createID";
 import ErrorsContext from "../../functions/errorsContextProvider";
 import { useContext } from "react";
@@ -50,9 +49,7 @@ export default function Todo(props){
                         
                     </label>
 
-                    <Link to={`/${props.todo.id}`}>
                         <h2 className={propCheck ? "checked" : ""}>{props.todo.title}</h2>
-                    </Link>
                 </div>
             </div>
         </div>
