@@ -70,20 +70,20 @@ export default function TodoModal(props){
                     <h1>
                         {
                             newTodo ? 
-                            "Creer un todo" :
-                            "Editer un todo"
+                            "Create todo" :
+                            "Edit todo"
                         }
                     </h1>
                     <div className="form">
-                        <Field value={title} callback={setTitle}/>
-                        <Field value={description} callback={setDescription}/>
+                        <Field value={title} callback={setTitle} label="titre"/>
+                        <Field value={description} callback={setDescription} label="description"/>
                     </div>
                     <button onClick={submit}>
 
                         {
                             newTodo ? 
-                            "Creer" :
-                            "Editer"
+                            "Create" :
+                            "Edit"
                         }
                     </button>
                 </div>

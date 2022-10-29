@@ -37,16 +37,21 @@ export default function Auth(){
 
                 <div className="form">
                     <h1>
-                        connectez-vous
+                        {
+                            newAccount && 
+                            "Signup"
+                            ||
+                            "Login"
+                        }
                     </h1>
                     <p>
-                        <input type="checkbox" id={checkboxID} onClick={handleChecked}/> <label htmlFor={checkboxID}> je souhaite m'inscrire </label>
+                        <input type="checkbox" id={checkboxID} onClick={handleChecked}/> <label htmlFor={checkboxID}> I would like to signup </label>
                     </p>
-                    <Field callback={setEmail} value={email}/>
-                    <Field callback={setPassword} value={password} password/>
+                    <Field callback={setEmail} value={email} label="Email"/>
+                    <Field callback={setPassword} value={password} password label="Password"/>
                     {
                         newAccount &&
-                        <Field callback={setPasswordConfirmation} value={passwordConfirmation}/>
+                        <Field callback={setPasswordConfirmation} value={passwordConfirmation} password label="Password confirmation"/>
                     }
                 </div>
                 <button onClick={submit}>submit</button>

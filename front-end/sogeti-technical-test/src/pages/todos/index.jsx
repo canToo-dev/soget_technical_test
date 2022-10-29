@@ -6,6 +6,7 @@ import NewTodo from "../../components/newTodo"
 import { useParams } from 'react-router-dom';
 import TodoModal from "../../components/todoModal"
 import ErrorsContext from "../../functions/errorsContextProvider"
+import LogoutBtn from "../../components/logoutBtn"
 export default function Todos (){
     const errorsCtx = useContext(ErrorsContext)
     const { slug } = useParams();
@@ -22,7 +23,6 @@ export default function Todos (){
         const checked = [...paramClone].filter(todo => todo.checked === true);
         const unChecked = [...paramClone].filter(todo => todo.checked !== true);
         const r = [...unChecked, ...checked];
-        console.log(r);
         setTodosState(r) 
     }
     const append = (obj) => {
@@ -43,6 +43,7 @@ export default function Todos (){
     }, [response])
     return(
         <div className="todos">
+            <LogoutBtn/>
             <NewTodo/>
             {
             todosState?.map(
