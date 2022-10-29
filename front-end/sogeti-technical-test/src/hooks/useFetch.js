@@ -26,7 +26,6 @@ export default function useFetch (url, obj){
             //otherwise : just pass the obj.
     }
     const handleJWTRefresh = (jwt) => {
-        console.log(jwt);
         jwt && authCtx.methods.setJwt(jwt)
     }
 
@@ -50,7 +49,6 @@ export default function useFetch (url, obj){
         .catch(errors => {
             return errors.json();
         }).then(json => {
-            console.log(json);
             if(
                 (json.errors?.filter(errorMsg => errorMsg.includes("You need to sign")).length > 0)
             ){

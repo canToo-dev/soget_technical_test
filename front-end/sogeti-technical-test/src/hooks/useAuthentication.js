@@ -12,7 +12,7 @@ export default function useAuthentication(errorsCtx = null){
     const setJwt = (jwt) => {
         cookies.setCookie("jwt", jwt, 3650)
         setAuthState({
-            authenticated : true,
+            authenticated : jwt ? true : false,
             jwt : jwt
         })
     }
@@ -49,10 +49,7 @@ export default function useAuthentication(errorsCtx = null){
           .catch((error) => {errorsCtx && errorsCtx.setErrors(error)})
     }
     const logout = () => {
-        setAuthState({
-            authenticated : false,
-            jwt : null
-        })
+        setJwt(null)
     }
     return {
         methods : {

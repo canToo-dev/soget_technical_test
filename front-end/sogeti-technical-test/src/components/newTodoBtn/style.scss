@@ -1,4 +1,4 @@
-  
+button,
 .new-todo-btn{
     display: inline-block;
     outline: 0;
@@ -9,7 +9,9 @@
     padding: 8px 16px;
     font-size: 16px;
     font-weight: 700;
-    color: var(--clear);
+    color: $clear !important;
     line-height: 26px;
-
+    &.logout{
+        background: $red;
+    }
 }
