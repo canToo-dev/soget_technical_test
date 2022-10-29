@@ -27,5 +27,6 @@ const root = document.createElement('div');
             root
             )
         const field = document.querySelector(".field");
-        expect(field.value).toBe("value");
+        
+        expect(field.querySelector("input[type=text]").value).toBe("value");
     })
